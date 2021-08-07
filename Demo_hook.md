@@ -115,3 +115,32 @@ function _demo_hook_form_submit(&$form, FormStateInterface $form_state) {
   }
 }
 ```
+
+
+## Bài tập: 5 Thêm validate cho Element nhập số lượng bài viết cần tạo.
+## Tạo một validate với tên:
+```php
+$form['#validate'][] = '_Tên_mà_mày_thik_đặt';
+```
+## tạo function gọi tên của validae xuống xong gét các biến vào ta đk một hàm  <chứ đầu tiên phải viết hoa>.
+```php
+function _demo_hook_validate(&$form, FormStateInterface $form_state) {
+  $name = $form_state->getValue('name');
+  if ($name != ucfirst($name)) {
+    $form_state->setErrorByName('name', t('Chữ đầu tiên phải viết hoa!'));
+  }
+```
+## Tương tự mink làm cho hàm <hệ điều hành>.
+```php
+  $aos = $form_state->getValue('aos');
+  if ($aos != ucfirst($aos)) {
+    $form_state->setErrorByName('aos', t('Chữ đầu tiên phải viết hoa!'));
+  }
+```
+## Hàm này mink sét ko đk quá tối đa 2 từ, mình dùng (count(explode(" ", $Tên biến)) để tách từ ra bằng khoảng cách, rồi gét các giá trị vào ta đk hàm <ko quá tối đa 2 từ>.
+```php
+  if (count(explode(" ", $aos)) > 2) {
+    $form_state->setErrorByName('aos', t('Chỉ đc chứa tối da 2 từ'));
+  }
+}
+```
