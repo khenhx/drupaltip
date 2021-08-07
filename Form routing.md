@@ -1,4 +1,5 @@
 ## DemoSettingsForm: 
+```yml
 khenhx_form.settings:
   path: '/admin/khen-test'
   defaults:
